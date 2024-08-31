@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "csrf_token",
+      "value": "lj1TzJQn-k0Z622BTNwqOdob1Zeb0O_3PHnE.w%2BPyB1oImW%2B0N3Bi1R2rlguNzdIngBz7bjo%2Fs0iNCQU",
+      "domain": "circula-qa-challange.vercel.app",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
