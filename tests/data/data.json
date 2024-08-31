@@ -1,0 +1,7 @@
+{
+    "startTrialText": "Start your free trial",
+    "swedenOption": "Sweden",
+    "url": "/users/sign_up",
+    "successUrl": "/users/sign_up?done=1",
+    "successMessage": "You made it!"
+}

@@ -8,10 +8,10 @@ test cases included in this file:
 
 const { test, expect } = require("@playwright/test");
 const { faker } = require("@faker-js/faker");
-const { SignupPage } = require("./SignupPage");
-const data = require("./data.json");
+const { SignupPage } = require("../tests/pages/SignupPage");
+const data = require("../tests/data/data.json");
 
-test.describe("Country Dropdown Verification for option Sweden", () => {
+test.describe("Country Dropdown Verification", () => {
   let signupPage;
 
   test.beforeEach(async ({ page }) => {
@@ -62,15 +62,17 @@ test.describe("Country Dropdown Verification for option Sweden", () => {
   test("Verify dropdown functionality on mobile devices", async ({
     browser,
   }) => {
+    // Create a new browser context with a mobile viewport
     const context = await browser.newContext({
-      viewport: { width: 375, height: 667 },
-      isMobile: true,
+      viewport: { width: 375, height: 667 }, // Mobile viewport size
+      userAgent:
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1", // Simulate a mobile user agent
     });
+
     const mobilePage = await context.newPage();
     const mobileSignupPage = new SignupPage(mobilePage);
 
     await mobileSignupPage.navigate();
-    await mobileSignupPage.handleConsent();
     await mobileSignupPage.selectCountry(data.swedenOption);
 
     // Verify that "Sweden" is selected
@@ -78,6 +80,9 @@ test.describe("Country Dropdown Verification for option Sweden", () => {
       mobileSignupPage.countryInputSelector
     );
     expect(selectedText).toBe(data.swedenOption);
+
+    // Close the context
+    await context.close();
   });
 
   test("Verify focus state on the dropdown", async () => {

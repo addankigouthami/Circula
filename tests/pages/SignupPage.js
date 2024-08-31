@@ -10,9 +10,7 @@ class SignupPage {
   }
 
   async navigate() {
-    await this.page.goto(
-      "https://circula-qa-challange.vercel.app/users/sign_up"
-    );
+    await this.page.goto("/users/sign_up");
   }
 
   async handleConsent() {
@@ -49,6 +47,7 @@ class SignupPage {
     } catch (error) {
       await this.page.click("div.sc-bae72812-1.hOoKFb");
     }
+
     const isChecked = await this.page.isChecked('input[name="acceptTos"]');
     expect(isChecked).toBe(true);
     await this.page.click('button[type="submit"]');
